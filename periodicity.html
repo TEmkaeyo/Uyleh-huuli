@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Үелэх хандлага · Ерөнхий хими, Лекц 6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=PT+Serif:wght@400;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#F2F5F7;--card:#fff;--ink:#112233;--mute:#52667A;--line:#D5DEE5;--a:#0E7C86;--b:#D9822B;--soft:#E2EFF1;
+--sans:"Manrope",system-ui,"Segoe UI",Arial,sans-serif;--serif:"PT Serif",Georgia,"Times New Roman",serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A22;--card:#16252F;--ink:#E6EEF2;--mute:#97ACBB;--line:#29404E;--a:#4FC3CC;--b:#F0A65A;--soft:#1B3340}}
+:root[data-theme="dark"]{--bg:#0F1A22;--card:#16252F;--ink:#E6EEF2;--mute:#97ACBB;--line:#29404E;--a:#4FC3CC;--b:#F0A65A;--soft:#1B3340}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 var(--serif)}
+.w{max-width:880px;margin:0 auto;padding:0 20px}
+h1,h2,h3,.sans{font-family:var(--sans)}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.1;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(23px,3.6vw,30px);margin:0 0 10px;font-weight:800;letter-spacing:-.01em}
+h3{font-size:18px;margin:22px 0 6px}
+header{padding:44px 0 22px}
+header p{color:var(--mute);max-width:60ch;margin:0}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;font:600 14px var(--sans)}
+nav a{color:var(--ink);text-decoration:none;border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:99px}
+nav a:hover,nav a:focus-visible{border-color:var(--a);outline:2px solid var(--a);outline-offset:1px}
+section{padding:34px 0;border-top:1px solid var(--line)}
+p{margin:0 0 14px;max-width:68ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button,.seg button{font:700 14px var(--sans);padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed=true],.seg button[aria-pressed=true]{background:var(--a);border-color:var(--a);color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.chart{overflow-x:auto}
+svg{display:block;width:100%;min-width:520px;height:auto}
+svg text{font:600 12px var(--sans);fill:var(--mute)}
+.legend{display:flex;gap:16px;font:600 13px var(--sans);margin:6px 0}
+.legend i{display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.read{font:700 15px var(--sans);min-height:24px;color:var(--ink)}
+.note{background:var(--soft);border-left:4px solid var(--b);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px;font-size:15.5px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font:14.5px/1.5 var(--sans)}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left}
+th{color:var(--mute);font-weight:700}
+.eq{font:italic 18px var(--serif);background:var(--soft);padding:10px 16px;border-radius:8px;display:inline-block;margin:4px 0 14px}
+.tl{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--a)}
+.tl li{margin:0 0 12px;position:relative}
+.tl li::before{content:"";position:absolute;left:-25px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--a)}
+.tl b{font-family:var(--sans)}
+.row{display:flex;align-items:center;gap:10px;margin:7px 0;font:600 14px var(--sans)}
+.row span:first-child{width:56px}
+.bar{height:20px;border-radius:4px;background:var(--a);min-width:3px}
+.bar.hi{background:var(--b)}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font:600 15px var(--sans);margin-bottom:10px}
+select,input[type=range]{font:600 15px var(--sans);padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+input[type=range]{padding:0;accent-color:var(--a);width:min(100%,320px)}
+.big{font:800 30px var(--sans)}
+.meter{height:14px;background:var(--line);border-radius:7px;overflow:hidden;margin:8px 0}
+.meter div{height:100%;background:var(--b);transition:width .25s}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0}
+summary{cursor:pointer;font:700 15.5px var(--sans)}
+details p{margin:8px 0 0;font-size:15.5px}
+footer{padding:30px 0 50px;color:var(--mute);font:14px var(--sans);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header><div class="w">
+<div class="sans" style="color:var(--mute);font-weight:700;font-size:14px">S.GCM101 Ерөнхий хими · Лекц 6</div>
+<h1>Элементийн шинж чанар яагаад үе, бүлгээр давтагддаг вэ?</h1>
+<p>Бүх хандлагыг хоёр хэмжигдэхүүнээр тайлбарлана: цөмийн эффектив цэнэг Zeff ба гаднах бүрхүүлийн дугаар n. Доорх графикаас шинж чанар сонгоод II, III үеийн хандлагыг харна уу.</p>
+<nav aria-label="Агуулга"><a href="#explorer">Хандлага</a><a href="#history">Үелэх системийн түүх</a><a href="#zeff">Zeff</a><a href="#radius">Радиус</a><a href="#ie">Ионжих энерги</a><a href="#ea">Электрон нэгдэх</a><a href="#chi">Цахилгаан сөрөг чанар</a><a href="#quiz">Бататгах</a></nav>
+</div></header>
+
+<main class="w">
+<section id="explorer" style="border-top:0;padding-top:10px">
+<h2>Хандлагын судалгаа</h2>
+<div class="panel">
+<div class="tabs" id="tabs" role="group" aria-label="Шинж чанар"></div>
+<div class="legend"><span><i style="background:var(--a)"></i>II үе (Li–Ne)</span><span><i style="background:var(--b)"></i>III үе (Na–Ar)</span></div>
+<div class="chart"><svg id="svg" viewBox="0 0 640 300" role="img" aria-label="Үелэх хандлагын график"></svg></div>
+<div class="read" id="read" aria-live="polite">Цэг дээр хулганаа аваачих эсвэл дарна уу.</div>
+<div class="note" id="note"></div>
+</div>
+</section>
+
+<section id="history">
+<h2>Ангилалаас үелэх хууль хүртэл</h2>
+<p>XIX зууны ангиллууд атомын массыг үндэс болгосон. 1913 онд Мозли атомын дугаар Z (цөмийн цэнэг) бодит үндэс болохыг баталснаар Менделеевийн бүх зөрчил арилсан.</p>
+<ul class="tl">
+<li><b>1789 · Лавуазье.</b> 33 «энгийн бодисыг» хий, металл, металл бус, шороо гэж ангилсан.</li>
+<li><b>1829 · Дёберейнер.</b> Гурвалын хууль: Li, Na, K — (7 + 39)/2 = 23.</li>
+<li><b>1862 · Шанкуртуа.</b> «Теллурын эргүүлэг»: үелэлтийг анх график хэлбэрээр дүрсэлсэн.</li>
+<li><b>1864 · Ньюлэндс.</b> Октавын хууль: найм дахь элемент бүр төстэй.</li>
+<li><b>1869 · Менделеев ба Майер.</b> Хоосон нүд үлдээж, нээгдээгүй элементийн шинжийг таамагласан.</li>
+<li><b>1913 · Мозли.</b> √ν = a(Z − b): дэс дугаар нь цөмийн цэнэгийн тоо.</li>
+</ul>
+<div class="panel tbl" style="margin-top:16px"><table>
+<caption style="text-align:left;font:700 15px var(--sans);padding-bottom:8px">Эка-силиций (1871) ба германий (1886)</caption>
+<tr><th>Шинж</th><th>Таамаглал</th><th>Бодит</th></tr>
+<tr><td>Атомын масс</td><td>72</td><td>72.6</td></tr>
+<tr><td>Нягт, г·см⁻³</td><td>5.5</td><td>5.35</td></tr>
+<tr><td>Хлоридын буцлах цэг</td><td>&lt; 100 °C</td><td>86.5 °C</td></tr>
+</table></div>
+<div class="note">Te (127.6) нь I (126.9)-ээс хүнд боловч Z-ээр Te = 52, I = 53 тул зөв дараалалд орно.</div>
+</section>
+
+<section id="zeff">
+<h2>Цөмийн эффектив цэнэг ба Слэйтерийн дүрэм</h2>
+<p>Дотоод электронууд цөмийн цэнэгийг халхалдаг тул валентын электрон бүтэн Z-ийг биш Zeff = Z − S-ийг мэдэрнэ. s орбитал илүү нэвтэрдэг: s &gt; p &gt; d &gt; f.</p>
+<div class="panel">
+<div class="ctl"><label for="z">Атомын дугаар Z: <b id="zv">11</b> (<b id="zs">Na</b>)</label><input id="z" type="range" min="3" max="18" value="11"></div>
+<div id="zout" class="sans" style="font-size:15.5px"></div>
+</div>
+<div class="note">Үеэр Zeff алхам бүрт ≈ 0.65-аар өсөх нь радиус багасч, IE ба χ өсөх үндсэн шалтгаан. Бүлгээр Zeff бараг тогтмол (Слэйтер: Li 1.30, Na 2.20, K 2.20).</div>
+</section>
+
+<section id="radius">
+<h2>Атомын ба ионы радиус</h2>
+<p>Радиус нь нөхцөлт хэмжигдэхүүн тул зөвхөн нэг төрлийн (ковалент, металл, Ван-дер-Ваальс) утгыг харьцуулна. Үеэр Zeff ↑ тул радиус буурна; бүлгээр n ↑ тул өснө. Катион эх атомаасаа жижиг, анион том (Na 186 → Na⁺ 102; Cl 102 → Cl⁻ 181 пм).</p>
+<div class="panel">
+<h3 style="margin-top:0">Изоэлектрон эгнээ: 10 электронтой бөөмс, радиус пм</h3>
+<div id="iso"></div>
+<p style="color:var(--mute);font-size:15px;margin:8px 0 0">Электрон бүтэц ижил, Z өсөхөд цөм электрон үүлийг илүү татна.</p>
+</div>
+<div class="note">Лантаноидын агшилт: 4f электрон халхлалт муутай тул Zr (160 пм) ба Hf (159 пм) бараг ижил хэмжээтэй, химийн шинж нь маш төстэй.</div>
+</section>
+
+<section id="ie">
+<h2>Ионжих энерги</h2>
+<p>M(g) → M⁺(g) + e⁻, IE₁ &gt; 0. Дараалсан IE үргэлж өсөх бөгөөд валентын бүрхүүл дуусч дотоод бүрхүүлээс электрон салгах үед огцом үсэрнэ.</p>
+<div class="panel">
+<div class="seg tabs" id="ietabs" role="group" aria-label="Элемент"></div>
+<div id="iebars"></div>
+<div class="read" id="ieread"></div>
+</div>
+<h3>Үл хамаарах тохиолдол</h3>
+<div class="panel tbl"><table>
+<tr><th>Харьцуулалт</th><th>Шалтгаан</th></tr>
+<tr><td>Be &gt; B, Mg &gt; Al</td><td>Салах электрон p орбиталд: s-ээс бага нэвтэрдэг, s² хосоор халхлагдана</td></tr>
+<tr><td>N &gt; O, P &gt; S</td><td>Нэг p орбиталд хосолсон электронуудын түлхэлт; p³ хагас дүүрсэн бүтэц тогтвортой</td></tr>
+<tr><td>Ga ≈ Al</td><td>3d¹⁰ муу халхлалт → Zeff өндөр (Al 578, Ga 579 кЖ·моль⁻¹)</td></tr>
+</table></div>
+<div class="note">Дараалсан IE нь 578, 1817, 2745, 11577 бол IE₃–IE₄-ийн үсрэлт 3 валентын электрон буюу IIIA бүлгийг (Al) заана.</div>
+</section>
+
+<section id="ea">
+<h2>Электрон нэгдэх энтальпи</h2>
+<p>X(g) + e⁻ → X⁻(g), ΔegH. Сөрөг утга нь энерги ялгарна гэсэн үг; Eea ≈ −ΔegH. Хамгийн сөрөг нь F биш Cl (−349 &gt; −328 кЖ·моль⁻¹): F-ийн 2p бүрхүүл жижиг тул ирэх электрон хүчтэй түлхэгдэнэ.</p>
+<ul>
+<li>Be, Mg, Ne, Ar: дүүрсэн бүрхүүлтэй тул ΔegH &gt; 0.</li>
+<li>N ≈ 0: p³ дээр нэмэх электрон хосолж түлхэлт үүсгэнэ.</li>
+<li>Хоёр дахь ΔegH үргэлж эерэг (O⁻ → O²⁻: ≈ +700…+850 кЖ·моль⁻¹), O²⁻ нь зөвхөн ионы талстад (MgO) тогтвортой.</li>
+</ul>
+</section>
+
+<section id="chi">
+<h2>Цахилгаан сөрөг чанар ба холбооны төрөл</h2>
+<p>Паулинг: молекул дахь атомын холбооны электрон хосыг татах чадвар. Паулингийн шкалд |χA − χB| = 0.102√Δ, Δ = D(A–B) − √[D(A–A)·D(B–B)]. Малликен: χ = (IE + Eea)/2. Оллред–Рохов: χ = 0.359·Zeff/r² + 0.744.</p>
+<div class="eq">Ионы шинж (%) = [1 − exp(−Δχ²/4)] × 100</div>
+<div class="panel">
+<div class="ctl">
+<label>Атом A <select id="ea1"></select></label>
+<label>Атом B <select id="ea2"></select></label>
+</div>
+<div class="big" id="dchi"></div>
+<div class="meter" aria-hidden="true"><div id="mt" style="width:0"></div></div>
+<div class="sans" id="bt" style="font-size:15.5px"></div>
+</div>
+<div class="note">Ойролцоогоор Δχ &lt; 0.4 туйлгүй ковалент, 0.4–1.7 туйлт ковалент, &gt; 1.7 голчлон ионы. Хил нөхцөлт: HF-ийн Δχ = 1.78 боловч хийн төлөвт ковалент молекул.</div>
+
+<h3>Нэгдсэн хүснэгт</h3>
+<div class="panel tbl"><table>
+<tr><th>Шинж</th><th>Үеэр →</th><th>Бүлгээр ↓</th></tr>
+<tr><td>Zeff</td><td>өснө</td><td>≈ тогтмол</td></tr>
+<tr><td>Радиус</td><td>буурна</td><td>өснө</td></tr>
+<tr><td>IE₁</td><td>өснө (IIIA, VIA-д уналт)</td><td>буурна</td></tr>
+<tr><td>ΔegH</td><td>илүү сөрөг</td><td>бага сөрөг (II үе үл хамаарна)</td></tr>
+<tr><td>χ</td><td>өснө</td><td>буурна</td></tr>
+<tr><td>Металл шинж</td><td>буурна</td><td>өснө</td></tr>
+</table></div>
+</section>
+
+<section id="quiz">
+<h2>Бататгах асуулт</h2>
+<details><summary>Слэйтерээр O-ийн 2p электроны Zeff хэд вэ?</summary><p>S = 5 × 0.35 + 2 × 0.85 = 3.45, Zeff = 8 − 3.45 = 4.55.</p></details>
+<details><summary>S²⁻, Cl⁻, K⁺, Ca²⁺-ийг радиус багасах дарааллаар эрэмбэл.</summary><p>S²⁻ (184) &gt; Cl⁻ (181) &gt; K⁺ (138) &gt; Ca²⁺ (100) пм. Бүгд 18 электронтой, Z өсөхөд үүл цөм рүү татагдана.</p></details>
+<details><summary>Al-ийн IE₁ яагаад Mg-ийнхээс бага вэ?</summary><p>Al-ийн салах электрон 3p-д байрлах бөгөөд 3s-ээс бага нэвтэрч, 3s²-ээр хэсэгчлэн халхлагдсан тул салгахад хялбар.</p></details>
+<details><summary>Mg-ийн ΔegH яагаад эерэг вэ?</summary><p>3s дүүрсэн тул нэмэх электрон өндөр энергитэй 3p орбиталд орох ёстой бөгөөд 3s²-ээр халхлагдана.</p></details>
+<details><summary>H–Br холбооны |Δχ|-ийг Паулингаар тооцоол (D: H–H 436, Br–Br 193, H–Br 366).</summary><p>√(436 × 193) = 290.1; Δ = 75.9; |Δχ| = 0.102 × √75.9 = 0.89 (хүснэгтээр 0.76).</p></details>
+</section>
+</main>
+<footer><div class="w">Эх сурвалж: Atkins; Housecroft & Sharpe; Petrucci; Slater (1930); Clementi–Raimondi (1963); Cordero et al. (2008); Shannon (1976); Pauling (1932).</div></footer>
+
+<script>
+const E={II:["Li","Be","B","C","N","O","F","Ne"],III:["Na","Mg","Al","Si","P","S","Cl","Ar"]};
+const G=["IA","IIA","IIIA","IVA","VA","VIA","VIIA","VIIIA"];
+const zf=p=>[...Array(8)].map((_,i)=>{const v=i+1,Z=(p?10:2)+v;const S=.35*(v-1)+(p?8.8-0.0:1.7)-(p?0:0);return +(Z-(p?.35*(v-1)+6.8+2:.35*(v-1)+1.7)).toFixed(2)});
+const M={
+zeff:{n:"Zeff (Слэйтер)",u:"",II:zf(0),III:zf(1),t:"Үеэр Zeff өсөх нь бүх хандлагын эхлэл: Li 1.30 → Ne 5.85."},
+r:{n:"Ковалент радиус",u:" пм",II:[128,96,84,76,71,66,57,null],III:[166,141,121,111,107,105,102,null],t:"Зүүнээс баруун тийш Zeff өсөж радиус буурна. Хамгийн огцом бууралт IA → IIA (Li 128 → Be 96). Инертийн хийн ковалент радиус байхгүй."},
+ie:{n:"IE₁",u:" кЖ·моль⁻¹",II:[520,899,801,1086,1402,1314,1681,2081],III:[496,738,578,787,1012,1000,1251,1521],t:"Ерөнхийдөө өснө, гэхдээ IIIA (B, Al), VIA (O, S)-д уналт. Шалтгаан: p электрон бага нэвтэрдэг, p⁴-т электрон хос түлхэлцдэг."},
+ea:{n:"Электрон хамаарал Eea = −ΔegH",u:" кЖ·моль⁻¹",II:[60,0,27,122,0,141,328,0],III:[53,0,42,134,72,200,349,0],t:"Be, Mg, Ne, Ar-д ΔegH > 0 (0 гэж зурав), N ≈ 0. Хамгийн их нь F биш Cl: F-ийн жижиг 2p бүрхүүлд электрон түлхэлт их."},
+chi:{n:"Паулингийн χ",u:"",II:[.98,1.57,2.04,2.55,3.04,3.44,3.98,null],III:[.93,1.31,1.61,1.9,2.19,2.58,3.16,null],t:"Үеэр өсч F-д 3.98 хүрнэ; бүлгээр буурна. Инертийн хийд Паулингийн стандарт утга байхгүй."}
+};
+let cur="ie";
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("svg");
+function el(n,a,t){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e}
+function draw(){
+const m=M[cur];svg.replaceChildren();
+const all=[...m.II,...m.III].filter(v=>v!=null),mx=Math.max(...all),step=[1,2,2.5,5].map(s=>s).find(()=>true);
+const mag=Math.pow(10,Math.floor(Math.log10(mx/4)));const st=[1,2,2.5,5,10].map(s=>s*mag).find(s=>mx/s<=5);
+const top=Math.ceil(mx/st)*st,X=i=>60+i*74,Y=v=>250-v/top*215;
+for(let t=0;t<=top+1e-9;t+=st){svg.append(el("line",{x1:50,x2:620,y1:Y(t),y2:Y(t),stroke:"var(--line)"}),el("text",{x:44,y:Y(t)+4,"text-anchor":"end"},+t.toFixed(2)))}
+G.forEach((g,i)=>{svg.append(el("text",{x:X(i),y:270,"text-anchor":"middle"},g),el("text",{x:X(i),y:286,"text-anchor":"middle",style:"font-size:10.5px;opacity:.85"},E.II[i]+" / "+E.III[i]))});
+[["II","var(--a)"],["III","var(--b)"]].forEach(([p,c])=>{
+let d="";m[p].forEach((v,i)=>{if(v!=null)d+=(d&&m[p][i-1]!=null?"L":"M")+X(i)+" "+Y(v)});
+svg.append(el("path",{d,fill:"none",stroke:c,"stroke-width":3,"stroke-linejoin":"round"}));
+m[p].forEach((v,i)=>{if(v==null)return;const c2=el("circle",{cx:X(i),cy:Y(v),r:6,fill:c,stroke:"var(--card)","stroke-width":2,tabindex:0,style:"cursor:pointer"});
+const f=()=>{document.getElementById("read").textContent=E[p][i]+" ("+p+" үе): "+m.n+" = "+v+m.u};
+c2.addEventListener("mouseenter",f);c2.addEventListener("focus",f);c2.addEventListener("click",f);svg.append(c2)})});
+document.getElementById("note").textContent=m.t;document.getElementById("read").textContent="Цэг дээр хулганаа аваачих эсвэл дарна уу."}
+const tabs=document.getElementById("tabs");
+Object.keys(M).forEach(k=>{const b=document.createElement("button");b.textContent=M[k].n.split(" =")[0];b.setAttribute("aria-pressed",k==cur);b.onclick=()=>{cur=k;[...tabs.children].forEach(x=>x.setAttribute("aria-pressed",x===b));draw()};tabs.append(b)});
+draw();
+
+// Slater
+const z=document.getElementById("z");
+function slater(){const Z=+z.value,p=Z>10?1:0,v=Z-(p?10:2),n=p?3:2,sym=(p?E.III:E.II)[v-1];
+const a=.35*(v-1),b=p?8*.85:2*.85,c=p?2:0,S=a+b+c;
+document.getElementById("zv").textContent=Z;document.getElementById("zs").textContent=sym;
+document.getElementById("zout").innerHTML="Валентын электрон: "+v+" ("+n+"s,"+n+"p)<br>Ижил бүлэг: "+(v-1)+" × 0.35 = "+a.toFixed(2)+"<br>(n−1) бүрхүүл: "+(p?8:2)+" × 0.85 = "+b.toFixed(2)+(p?"<br>(n−2) бүрхүүл: 2 × 1.00 = 2.00":"")+"<br>S = "+S.toFixed(2)+" → <b style='font-size:20px'>Zeff = "+Z+" − "+S.toFixed(2)+" = "+(Z-S).toFixed(2)+"</b>"}
+z.oninput=slater;slater();
+
+// bars
+function bars(id,items,max,hiIdx){document.getElementById(id).innerHTML=items.map((it,i)=>"<div class='row'><span>"+it[0]+"</span><div class='bar"+(i==hiIdx?" hi":"")+"' style='width:"+(it[1]/max*70)+"%'></div><span style='width:auto'>"+it[1]+"</span></div>").join("")}
+bars("iso",[["O²⁻",140],["F⁻",133],["Na⁺",102],["Mg²⁺",72],["Al³⁺",53.5]],140);
+const IEd={Na:[496,4562,6910,9543,1],Mg:[738,1451,7733,10543,2],Al:[578,1817,2745,11577,3]};
+const it=document.getElementById("ietabs");
+function ie(k){[...it.children].forEach(b=>b.setAttribute("aria-pressed",b.textContent==k));const d=IEd[k];
+bars("iebars",d.slice(0,4).map((v,i)=>["IE"+(i+1),v]),11577,d[4]);
+document.getElementById("ieread").textContent=k+": IE"+d[4]+" → IE"+(d[4]+1)+" үсрэлт "+(d[d[4]]/d[d[4]-1]).toFixed(1)+" дахин. Валентын электрон: "+d[4]+"."}
+Object.keys(IEd).forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>ie(k);it.append(b)});ie("Na");
+
+// chi calculator
+const X={H:2.2,Li:.98,Be:1.57,B:2.04,C:2.55,N:3.04,O:3.44,F:3.98,Na:.93,Mg:1.31,Al:1.61,Si:1.9,P:2.19,S:2.58,Cl:3.16,K:.82,Cs:.79};
+const s1=document.getElementById("ea1"),s2=document.getElementById("ea2");
+Object.keys(X).forEach(k=>{s1.add(new Option(k,k));s2.add(new Option(k,k))});s1.value="Na";s2.value="Cl";
+function chi(){const d=Math.abs(X[s1.value]-X[s2.value]),p=(1-Math.exp(-d*d/4))*100;
+const t=d<.4?"туйлгүй (бараг туйлгүй) ковалент":d<=1.7?"туйлт ковалент":"голчлон ионы";
+document.getElementById("dchi").textContent="Δχ = "+d.toFixed(2);
+document.getElementById("mt").style.width=p+"%";
+document.getElementById("bt").innerHTML="Ионы шинж ≈ <b>"+p.toFixed(0)+" %</b> · "+s1.value+"–"+s2.value+": <b>"+t+"</b>"}
+s1.onchange=s2.onchange=chi;chi();
+</script>
+</body>
+</html>
